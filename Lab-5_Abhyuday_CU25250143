@@ -1,0 +1,187 @@
+'''class Stack:
+    def __init__(self):
+        self.stack = []
+    def push(self, item):
+        self.stack.append(item)
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        return None
+    def peek(self):
+        if not self.is_empty():
+            return self.stack[-1]
+        return None
+    def is_empty(self):
+        return len(self.stack) == 0
+    
+def precedence(operator):
+    if operator == '^':
+        return 3
+    elif operator in ('*', '/'):
+        return 2
+    elif operator in ('+', '-'):
+        return 1
+    return 0
+
+def infix_to_postfix(expression):
+    stack = Stack()
+    postfix = ""
+    for char in expression:
+        if char.isalnum():
+            postfix += char
+        elif char == '(':
+            stack.push(char)
+        elif char == ')':
+            while stack.peek() != '(':
+                postfix += stack.pop()
+            stack.pop()
+        else:
+            while (not stack.is_empty() and
+                   stack.peek() != '(' and
+                   precedence(stack.peek()) >= precedence(char)):
+                postfix += stack.pop()
+            stack.push(char)
+    while not stack.is_empty():
+        postfix += stack.pop()
+    return postfix
+expression = input("Enter infix expression: ")
+print("Postfix expression:", infix_to_postfix(expression))'''
+
+'''class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        return self.stack.pop()
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+
+def evaluate_postfix(expression):
+    stack = Stack()
+
+    for char in expression:
+        if char.isdigit():
+            stack.push(int(char))
+
+        else:
+            b = stack.pop()
+            a = stack.pop()
+
+            if char == '+':
+                result = a + b
+            elif char == '-':
+                result = a - b
+            elif char == '*':
+                result = a * b
+            elif char == '/':
+                result = a / b
+            elif char == '^':
+                result = a ** b
+
+            stack.push(result)
+
+    return stack.pop()
+
+
+expression = input("Enter postfix expression: ")
+
+result = evaluate_postfix(expression)
+
+print("Final result:", result)'''
+
+'''class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+
+    return root
+
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=" ")
+        inorder(root.right)
+
+
+def preorder(root):
+    if root:
+        print(root.data, end=" ")
+        preorder(root.left)
+        preorder(root.right)
+
+
+def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data, end=" ")
+
+
+def delete(root, data):
+    if root is None:
+        return root
+
+    if data < root.data:
+        root.left = delete(root.left, data)
+
+    elif data > root.data:
+        root.right = delete(root.right, data)
+
+    else:
+        if root.left is None:
+            return root.right
+
+        if root.right is None:
+            return root.left
+
+        temp = root.right
+
+        while temp.left:
+            temp = temp.left
+
+        root.data = temp.data
+        root.right = delete(root.right, temp.data)
+
+    return root
+
+
+root = None
+
+root = insert(root, 50)
+root = insert(root, 30)
+root = insert(root, 70)
+root = insert(root, 20)
+root = insert(root, 40)
+root = insert(root, 60)
+root = insert(root, 80)
+
+print("Inorder:")
+inorder(root)
+
+print("\nPreorder:")
+preorder(root)
+
+print("\nPostorder:")
+postorder(root)
+
+root = delete(root, 30)
+
+print("\nAfter deleting 30:")
+inorder(root)'''
