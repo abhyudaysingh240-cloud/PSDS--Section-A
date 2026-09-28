@@ -1,0 +1,59 @@
+#1
+'''N = int(input("Enter total number of elements: "))
+K = int(input("Enter subarray size (K): "))
+arr = list(map(int, input("Enter array elements: ").split()))
+window_sum = sum(arr[:K])
+max_sum = window_sum
+
+for i in range(K, N):
+    window_sum += arr[i]
+    window_sum -= arr[i-K]
+    max_sum = max(max_sum, window_sum)
+
+print("Maximum sum:", max_sum)'''
+
+#2
+'''def longest_substring(s):
+    freq = [0] * 26
+    left = 0
+    ans = 0
+
+    for right in range(len(s)):
+        index = ord(s[right]) - ord('a')
+        freq[index] += 1
+
+        while freq[index] > 1:
+            left_index = ord(s[left]) - ord('a')
+            freq[left_index] -= 1
+            left += 1
+        ans = max(ans, right - left + 1)
+    return ans
+
+s = input("Enter the String: ").strip()
+print(longest_substring(s))'''
+
+ #3
+'''INF = float('inf')
+n, m, k = map(int, input("Enter N, M, K: ").split())
+graph = []
+
+for i in range(m):
+    u, v, w = map(int, input("Enter u, v, weight: ").split())
+    graph.append((u, v, w))
+    graph.append((v, u, w))
+
+dist = [INF] * (n + 1)
+dist[1] = 0
+
+for edges in range(k):
+    new_dist = dist.copy()
+    for u, v, w in graph:
+        if dist[u] != INF:
+            new_dist[v] = min(new_dist[v], dist[u] + w)
+    dist = new_dist
+
+if dist[n] == INF:
+    print(-1)
+else:
+    print("Minimum path weight:", dist[n])'''
+
