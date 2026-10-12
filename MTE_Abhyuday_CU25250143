@@ -1,0 +1,9 @@
+t = int(input("Enter number of test cases: "))
+
+for i in range(t):
+    n, x = map(int, input("Enter n and x: ").split())
+    arr = list(map(int, input("Enter array elements: ").split()))
+
+    arr.sort(key=lambda a: ((a ^ x).bit_count(), a))
+
+    print("Sorted array:", *arr)
